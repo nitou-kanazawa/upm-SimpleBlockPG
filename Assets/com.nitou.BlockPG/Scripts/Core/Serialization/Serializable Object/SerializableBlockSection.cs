@@ -1,0 +1,72 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Xml.Linq;
+
+namespace nitou.BlockPG.Serialization {
+
+    public sealed class SerializableBlockSection {
+
+        public readonly List<SerializableBlock> childBlocks;
+        public readonly List<SerializableInput> inputs;
+
+
+        /// ----------------------------------------------------------------------------
+        // Public Method
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public SerializableBlockSection() {
+            childBlocks = new List<SerializableBlock>();
+            inputs = new List<SerializableInput>();
+        }
+
+
+        /// ----------------------------------------------------------------------------
+        #region Static Method (Data conversion)
+
+        /// <summary>
+        /// Identification key.
+        /// </summary>
+        public static readonly string NAME_KEY = "Section";
+
+        /// <summary>
+        /// Converting from classes to XML elements for serialization.
+        /// </summary>
+        public static XElement ToXElement(SerializableBlockSection sSection) {
+            var xSection = new XElement(NAME_KEY);
+            {
+                // Block List
+                var xChildBlocks = new XElement("childBlocks");
+                sSection.childBlocks.ForEach(block => xChildBlocks.Add(SerializableBlock.ToXElement(block)));
+                xSection.Add(xChildBlocks);
+
+                // Input List
+                var xInputs = new XElement("inputs");
+                sSection.inputs.ForEach(input => xInputs.Add(SerializableInput.ToXElement(input)));
+                xSection.Add(xInputs);
+            }
+            return xSection;
+        }
+
+        /// <summary>
+        /// Converting from XML elements to classes for serialization.
+        /// </summary>
+        public static SerializableBlockSection FromXElement(XElement xSection) {
+            var sSection = new SerializableBlockSection();
+            {
+                // Block list
+                var xChildBlocks = xSection.Element("childBlocks").Elements(SerializableBlock.NAME_KEY);
+                sSection.childBlocks.AddRange(xChildBlocks.Select(xBlock => SerializableBlock.FromXElement(xBlock)));
+
+                // Input list
+                var xInputs = xSection.Element("inputs").Elements(SerializableInput.NAME_KEY);
+                sSection.inputs.AddRange(xInputs.Select(xInput => SerializableInput.FromXElement(xInput)));
+            }
+            return sSection;
+        }
+        #endregion
+    }
+
+}
