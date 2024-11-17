@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace nitou.BlockPG.Interface {
 
@@ -21,6 +22,9 @@ namespace nitou.BlockPG.Interface {
 
         I_BPG_BlockLayout Layout { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         I_BPG_BlockSection ParentSection { get;}
 
 
@@ -29,7 +33,7 @@ namespace nitou.BlockPG.Interface {
 
 
     /// <summary>
-    /// 
+    /// Basic extension methods for type of <see cref="I_BPG_Block"/>.
     /// </summary>
     public static class BPG_Block_Extensions {
 
@@ -48,13 +52,20 @@ namespace nitou.BlockPG.Interface {
 
 
         /// ----------------------------------------------------------------------------
-        #region Type
+        #region Getter
 
         /// <summary>
         /// Obtains a reference to the parent section to which it belongs.
         /// </summary>
         public static I_BPG_Block GetParentBlock(this I_BPG_Block self) {
             return (self.ParentSection != null) ? self.ParentSection.Block : null;
+        }
+
+        /// <summary>
+        /// Obtains a reference to the parent section to which it belongs.
+        /// </summary>
+        public static I_BPG_BlockSection GetFirstSection(this I_BPG_Block self) {
+            return self.Layout.Sections.FirstOrDefault();
         }
 
         #endregion

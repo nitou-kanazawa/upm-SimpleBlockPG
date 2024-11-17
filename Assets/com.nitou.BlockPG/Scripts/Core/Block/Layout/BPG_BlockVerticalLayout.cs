@@ -18,7 +18,6 @@ namespace nitou.BlockPG.Block {
 
         private readonly List<I_BPG_BlockSection> _sections = new();
 
-        public IReadOnlyList<I_BPG_BlockSection> Sections => _sections;
 
         /// <summary>
         /// Block visible color.
@@ -46,12 +45,17 @@ namespace nitou.BlockPG.Block {
             set => _highlight = value;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public IReadOnlyList<I_BPG_BlockSection> Sections => _sections;
+
 
         /// ----------------------------------------------------------------------------
         // Lifecycle Events
 
         private void Awake() {
-            Initialize();
+            GatherSections();
         }
 
         private void Start() {
@@ -73,7 +77,7 @@ namespace nitou.BlockPG.Block {
         /// ----------------------------------------------------------------------------
         // Public Method
 
-        public void Initialize() {
+        public void GatherSections() {
             _sections.Clear();
             foreach (Transform chiled in transform) {
                 if (chiled.TryGetComponent<I_BPG_BlockSection>(out var section)) {
@@ -87,7 +91,6 @@ namespace nitou.BlockPG.Block {
         /// </summary>
         public void UpdateLayout() {
             RectTransform.sizeDelta = Size;
-
             _sections.ForEach(section => section.UpdateLayout());
         }
 
@@ -107,7 +110,7 @@ namespace nitou.BlockPG.Block {
         }
 
         void OnValidate() {
-            Initialize();
+            GatherSections();
         }
 #endif
     }
