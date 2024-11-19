@@ -11,17 +11,17 @@ namespace nitou.BlockPG.Events{
     /// </summary>
     public static class BPG_BlockEventBus
     {
-        // 生成・破棄イベント
+        // creation and destruction events
         private static Subject<I_BPG_Block> _onCreatedSubject = new();
         private static Subject<I_BPG_Block> _onDestoryedSubject = new();
 
-        // 選択・編集イベント
+        // selection and editing events
         private static Subject<I_BPG_Block> _onTouchedSubject = new();
         private static Subject<I_BPG_Block> _onFocusedSubject = new();
         private static Subject<BlockSelectEvent> _onSelectedSubject = new();
         private static Subject<I_BPG_Block> _onEditSubject = new();
 
-        // 移動イベント
+        // movement events
         private static Subject<BlockLocationEvent> _onStartDragSubject = new();
         private static Subject<BlockLocationEvent> _onEndDragSubject = new();
         private static Subject<BlockMoveEvent> _onMoveSubject = new();
@@ -35,42 +35,42 @@ namespace nitou.BlockPG.Events{
         // Property
 
         /// <summary>
-        /// ブロックが生成された直後に通知するObservable．
+        /// Observable to notify immediately after a block is created.
         /// </summary>
         public static IObservable<I_BPG_Block> OnCreated => _onCreatedSubject;
 
         /// <summary>
-        /// ブロックが破棄される直前に通知するObservable．
+        /// Observable to notify just before a block is destroyed.
         /// </summary>
         public static IObservable<I_BPG_Block> OnDestroyed => _onDestoryedSubject;
 
         /// <summary>
-        /// ブロックがタッチされた時に通知するObservable．
+        /// Observable to notify when a block is touched.
         /// </summary>
         public static IObservable<I_BPG_Block> OnTouched => _onTouchedSubject;
 
         /// <summary>
-        /// ブロックが選択された時に通知するObservable．
+        /// Observable to notify when a block is selected.
         /// </summary>
         public static IObservable<BlockSelectEvent> OnSelected => _onSelectedSubject;
 
         /// <summary>
-        /// ブロックが編集された時に通知するObservable．
+        /// Observable to notify when a block is edited.
         /// </summary>
         public static IObservable<I_BPG_Block> OnEdit => _onEditSubject;
 
         /// <summary>
-        /// ブロックのドラッグを開始した時に通知するObservable．
+        /// Observable to notify when block dragging starts.
         /// </summary>
         public static IObservable<BlockLocationEvent> OnStartDrag => _onStartDragSubject;
 
         /// <summary>
-        /// ブロックのドラッグを終了した時に通知するObservable．
+        /// Observable to notify when block dragging ends.
         /// </summary>
         public static IObservable<BlockLocationEvent> OnEndDrag => _onEndDragSubject;
 
         /// <summary>
-        /// 
+        /// Observable to notify when a block is moved.
         /// </summary>
         public static IObservable<BlockMoveEvent> OnMove => _onMoveSubject;
 
