@@ -3,15 +3,14 @@ using UnityEngine;
 namespace nitou.BlockPG.DragDrop {
     using nitou.BlockPG.Interface;
 
-    public sealed class BPG_SpotBlockBody : BPG_Spot{
+    public sealed class BPG_SpotOuterArea : BPG_Spot {
 
         public override Vector2 DropPosition => RectTransform.position;
+
 
         private void Awake() {
             GatherComponents();
         }
-
-
 
 
         /// ----------------------------------------------------------------------------
@@ -33,9 +32,12 @@ namespace nitou.BlockPG.DragDrop {
 
     public static partial class BPG_Spot_Extensions {
 
-        public static void ConnectTo(this I_BPG_Block block, BPG_SpotBlockBody spotBlockBody) {
-            block.RectTransform.SetParent(spotBlockBody.RectTransform);
-            block.RectTransform.SetSiblingIndex(0);
+        public static void InsertNextTo(this I_BPG_Block block, BPG_SpotOuterArea spotOuterArea) {
+            // place to the same parent as spot block
+            var spotBlockParent = spotOuterArea.Block.RectTransform.parent;
+            int spotBlockIndex = spotOuterArea.Block.RectTransform.GetSiblingIndex();
+            block.RectTransform.SetParent(spotBlockParent);
+            block.RectTransform.SetSiblingIndex(spotBlockIndex + 1);
         }
     }
 }

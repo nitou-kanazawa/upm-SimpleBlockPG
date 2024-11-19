@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace nitou.BlockPG.Interface{
@@ -20,6 +22,37 @@ namespace nitou.BlockPG.Interface{
 
         /// ----------------------------------------------------------------------------
         #region Getter
+
+        /// <summary>
+        /// Body’¼‰º‚ÌƒuƒƒbƒN‚ğæ“¾‚·‚é
+        /// </summary>
+        public static IEnumerable<I_BPG_Block> GetBodyBlocks(this I_BPG_BlockSection self) {
+            return self.Body.ChildBlocks.Where(b => b != null);
+        }
+
+        /// <summary>
+        /// qŠK‘wˆÈ‰º‚Ì<see cref="I_BPG_Block"/>‚ğÄ‹A“I‚Éæ“¾‚·‚é
+        /// </summary>
+        public static List<I_BPG_Block> GetAllChaildBlocks(this I_BPG_BlockSection self) {
+            if (self.Body == null) return new List<I_BPG_Block>();
+
+            // qŠK‘wˆÈ‰º
+            return self.GetBodyBlocks()
+                .SelectMany(block => block.GetAllChaildBlocks())
+                .ToList();
+        }
+
+        /// <summary>
+        /// qŠK‘wˆÈ‰º‚Ì<see cref="I_BPG_Block"/>‚Ì”‚ğæ“¾‚·‚é
+        /// </summary>
+        public static int GetAllChaildBlocksCount(this I_BPG_BlockSection self) {
+            if (self == null || self.Body == null) return 0;
+
+            // Block‚Ì‘”
+            return self.GetBodyBlocks()
+                .Select(block => block.GetAllChaildBlocksCount())
+                .Sum();
+        }
 
         /// <summary>
         /// Obtains a reference to the parent section to which it belongs.

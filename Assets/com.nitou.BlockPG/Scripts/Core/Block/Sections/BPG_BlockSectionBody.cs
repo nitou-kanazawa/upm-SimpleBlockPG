@@ -92,7 +92,7 @@ namespace nitou.BlockPG.Block.Section{
         }
 
         private void ApplyColor() {
-            if (_image != null && _blockLayout != null) {
+            if (_image != null && _image.sprite != null && _blockLayout != null) {
                 _image.color = _blockLayout.Color;
             }
         }

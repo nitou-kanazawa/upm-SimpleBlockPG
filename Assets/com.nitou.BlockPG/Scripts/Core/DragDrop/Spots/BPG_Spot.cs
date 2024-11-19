@@ -4,13 +4,21 @@ using UnityEngine;
 namespace nitou.BlockPG.DragDrop{
     using nitou.BlockPG.Interface;
 
+    /// <summary>
+    /// Base component of spot.
+    /// </summary>
+    [DisallowMultipleComponent]
+    public abstract class BPG_Spot : BPG_ComponentBase, I_BPG_Spot {
+        
+        public abstract Vector2 DropPosition { get; }
 
-    public static class BPG_Spot{
+        public virtual I_BPG_Block Block { get; protected set; }
+
 
         /// ----------------------------------------------------------------------------
         #region Static Method
 
-        private static List<I_BPG_Spot> _spotsList = new();
+        private readonly static List<I_BPG_Spot> _spotsList = new();
 
         public static IReadOnlyList<I_BPG_Spot> ActiveSpots => _spotsList;
 
@@ -38,10 +46,15 @@ namespace nitou.BlockPG.DragDrop{
 
             _spotsList.Remove(spot);
         }
-        #endregion
+        #endregion       
 
 
-        
+        /// ----------------------------------------------------------------------------
+        // Lifecycle Events
+
+        private void OnEnable() => BPG_Spot.Register(this);
+
+        private void OnDisable() => BPG_Spot.Unregister(this);
 
     }
 

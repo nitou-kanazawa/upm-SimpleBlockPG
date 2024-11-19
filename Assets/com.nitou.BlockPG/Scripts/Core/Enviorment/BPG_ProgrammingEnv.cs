@@ -1,9 +1,14 @@
 using UnityEngine;
 
-namespace nitou.BlockPG
-{
-    public class BPG_ProgrammingEnv : MonoBehaviour
-    {
-    
+namespace nitou.BlockPG.Enviorment{
+    using nitou.BlockPG.Interface;
+    using nitou.BlockPG.DragDrop;
+
+    [RequireComponent(typeof(BPG_SpotProgrammingEnv))]
+    public class BPG_ProgrammingEnv : BPG_ComponentBase, I_BPG_ProgrammingEnv {
+
+
+        
+
     }
 }

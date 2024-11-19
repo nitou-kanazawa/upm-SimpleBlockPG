@@ -12,7 +12,7 @@ namespace nitou.BlockPG.Block.Section {
 
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Image))]
-    [RequireComponent(typeof(Shadow))]
+    //[RequireComponent(typeof(Shadow))]
     public sealed class BPG_BlockSectionHeader : BPG_ComponentBase, I_BPG_BlockSectionHeader {
 
         // refecences (self)

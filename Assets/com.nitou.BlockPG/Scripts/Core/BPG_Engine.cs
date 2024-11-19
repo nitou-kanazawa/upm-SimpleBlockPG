@@ -3,14 +3,12 @@ using UnityEngine;
 
 namespace nitou.BlockPG {
 
-    public class BPG_Engine : I_BPG_Config{
+    public class BPG_Engine : MonoBehaviour, I_BPG_Config{
 
 
     }
 
 
-    public interface I_BPG_Config{
-
-    }
+    
 
 }

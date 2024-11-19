@@ -1,15 +1,13 @@
 using UniRx;
 using UnityEngine;
 
-namespace nitou.BlockPG.Block
-{
+namespace nitou.BlockPG.Block {
     using nitou.BlockPG.Events;
 
     /// <summary>
     /// A block instance that serves as the entry point for the program.
     /// </summary>
-    public sealed class BPG_EntryBlock : BPG_BlockBase
-    {
+    public sealed class BPG_EntryBlock : BPG_BlockBase {
 
         /// <summary>
         /// Classification of blocks.
@@ -20,10 +18,9 @@ namespace nitou.BlockPG.Block
         /// ----------------------------------------------------------------------------
         // Lifecycle Events
 
-        private void Awake()
-        {
+        private void Awake() {
             GatherComponents();
-            //BPG_InputEventBus.OnPrimaryKeyUp.Subscribe(_ => GetParentSection()).AddTo(this);
+            BPG_InputEventBus.OnPrimaryKeyUp.Subscribe(_ => GatherParentSection()).AddTo(this);
         }
 
 
@@ -34,7 +31,7 @@ namespace nitou.BlockPG.Block
         /// Set the active state of the Shadow.
         /// </summary>
         public override void SetShadowActive(bool isActive) { }
-            //=>  this.SetShadow(isActive);
+        //=>  this.SetShadow(isActive);
 
     }
 

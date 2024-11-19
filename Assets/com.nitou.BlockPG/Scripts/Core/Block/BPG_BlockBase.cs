@@ -17,9 +17,9 @@ namespace nitou.BlockPG.Block{
         public abstract BlockType Type { get;}
 
         /// <summary>
-        /// Behavior during drag operations.
+        /// 
         /// </summary>
-        public I_BPG_Dragable Drag { get; protected set; }
+        public I_BPG_BlockSection ParentSection { get; protected set; }
 
         /// <summary>
         /// 
@@ -27,9 +27,14 @@ namespace nitou.BlockPG.Block{
         public I_BPG_BlockLayout Layout { get; protected set; }
 
         /// <summary>
-        /// 
+        /// Behavior during drag operations.
         /// </summary>
-        public I_BPG_BlockSection ParentSection { get; protected set; }
+        public I_BPG_Draggable Drag { get; protected set; }
+
+        /// <summary>
+        /// Functional implementation of blocks.
+        /// </summary>
+        public I_BPG_Instruction Instruction { get; set; }
 
         /// <summary>
         /// Idintification id.
@@ -59,7 +64,14 @@ namespace nitou.BlockPG.Block{
 		protected void GatherComponents()
         {
             Layout = gameObject.GetComponent<I_BPG_BlockLayout>();
-            Drag = gameObject.GetComponent<I_BPG_Dragable>();
+            Drag = gameObject.GetComponent<I_BPG_Draggable>();
+        }
+
+        /// <summary>
+        /// Obtains a reference to the parent section to which it belongs.
+        /// </summary>
+        protected void GatherParentSection() {
+            ParentSection = gameObject.GetComponentInParent<I_BPG_BlockSection>();
         }
 
     }
