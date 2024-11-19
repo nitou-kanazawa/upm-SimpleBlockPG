@@ -30,6 +30,9 @@ namespace nitou.BlockPG.Interface {
         /// </summary>
         I_BPG_BlockSection ParentSection { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         I_BPG_BlockLayout Layout { get; }
 
         /// <summary>
@@ -40,9 +43,11 @@ namespace nitou.BlockPG.Interface {
         /// <summary>
         /// Functional implementation of blocks.
         /// </summary>
-        I_BPG_Instruction Instruction { get; set; }
+        I_BPG_Instruction Instruction { get; }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         void SetParent(I_BPG_BlockSection parentSection);
     }
 
@@ -76,6 +81,9 @@ namespace nitou.BlockPG.Interface {
             return (self.ParentSection != null) ? self.ParentSection.Block : null;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static I_BPG_Block GetRootBlock(this I_BPG_Block self) {
             var parentBlock = self.GetParentBlock();
             return (parentBlock != null) ? parentBlock.GetRootBlock() : self;
@@ -118,7 +126,6 @@ namespace nitou.BlockPG.Interface {
                 .Sum();
         }
 
-
         /// <summary>
         /// Obtains a reference to the parent section to which it belongs.
         /// </summary>
@@ -136,6 +143,21 @@ namespace nitou.BlockPG.Interface {
 
             return firstSection.GetBodyBlocks();
         }
+
+        #endregion
+
+
+        /// ----------------------------------------------------------------------------
+        #region Setter
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void UpdateParentSection(this I_BPG_Block self) {
+            var parentSection = self.RectTransform.GetComponentInParent<I_BPG_BlockSection>();
+            self.SetParent(parentSection);
+        }
+
 
         #endregion
 

@@ -87,8 +87,8 @@ namespace nitou.BlockPG.DragDrop {
             _system.GhostBlock.Hide();
             _system.GhostBlock.RectTransform.SetParent(null);
 
-            // event
-            BPG_InputEventBus.PublishPrimaryKeyUpEnd();
+            // 
+            this.Block.UpdateParentSection();
         }
         #endregion
 

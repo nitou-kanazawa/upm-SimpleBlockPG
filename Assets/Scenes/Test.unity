@@ -1342,10 +1342,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1645580554}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dce24b9c062efdf48ab8712943efb51d, type: 3}
+  m_Script: {fileID: 11500000, guid: efb945264ff2a1a4f922b4dc4071d193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _draggingObjParent: {fileID: 886401100}
+  _draggingObjHolder: {fileID: 0}
+  _ghostBlock: {fileID: 0}
+  _detectionDistance: 50
 --- !u!1 &1950300403
 GameObject:
   m_ObjectHideFlags: 0

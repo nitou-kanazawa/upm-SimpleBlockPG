@@ -19,9 +19,9 @@ namespace nitou.Utils {
             get {
                 if (_instance == null) {
 #if UNITY_2022_1_OR_NEWER
-                    _instance = FindObjectsByType<T>(FindObjectsSortMode.None).First(); 
+                    _instance = FindAnyObjectByType<T>(); 
 #else
-                    _instance = FindObjectsOfType<T>(includeInactive: true).First(); 
+                    _instance = FindObjectOfType<T>(includeInactive: true); 
 #endif
 
                     // シーン内に存在しない場合はエラー

@@ -21,7 +21,7 @@ namespace nitou.BlockPG.Block{
             GatherComponents();
 
             // [NOTE] block which parent section is null was can not connectable.
-            BPG_InputEventBus.OnPrimaryKeyUpEnd.Subscribe(_ => GatherParentSection()).AddTo(this);
+            //BPG_InputEventBus.OnPrimaryKeyUpEnd.Subscribe(_ => GatherParentSection()).AddTo(this);
         }
 
     }

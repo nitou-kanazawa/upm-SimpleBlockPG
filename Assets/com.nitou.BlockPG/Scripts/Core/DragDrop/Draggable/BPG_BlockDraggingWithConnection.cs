@@ -13,7 +13,6 @@ namespace nitou.BlockPG.DragDrop{
         /// ----------------------------------------------------------------------------
         // Interface Method
 
-
         public override void OnBegineDrag(PointerEventData eventData) {
             // append to dagging layer
             _system.AssignToDraggingPanel(this);
@@ -22,7 +21,6 @@ namespace nitou.BlockPG.DragDrop{
         public override void OnDrag(PointerEventData eventData) {
             // detect candidate spot
             DetectConectableBlockSpot();
-            Debug.Log($"Spot : {_currentSpot}");
         }
 
         public override void OnEndDrag(PointerEventData eventData) {
@@ -114,14 +112,12 @@ namespace nitou.BlockPG.DragDrop{
         private void HandleDropToCurrentSpot() {
             var spot = _currentSpot;
 
-            // 
+            // block body
             if (spot is BPG_SpotBlockBody spotBlockBody) {
                 this.Block.ConnectTo(spotBlockBody);
-                Debug.Log("connect to body.");
             } 
-            // 
+            // block outer area
             else if(spot is BPG_SpotOuterArea spotOuterArea) {
-                Debug.Log("connect to outer area.");
                 this.Block.InsertNextTo(spotOuterArea);
             }
 

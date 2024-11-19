@@ -20,7 +20,6 @@ namespace nitou.BlockPG.Block {
 
         private void Awake() {
             GatherComponents();
-            BPG_InputEventBus.OnPrimaryKeyUp.Subscribe(_ => GatherParentSection()).AddTo(this);
         }
 
 

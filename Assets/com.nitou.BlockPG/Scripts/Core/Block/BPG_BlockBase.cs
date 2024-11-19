@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace nitou.BlockPG.Block{
+namespace nitou.BlockPG.Block {
     using nitou.BlockPG.Interface;
 
     /// <summary>
@@ -9,12 +9,12 @@ namespace nitou.BlockPG.Block{
     /// </summary>
     [SelectionBase]
     [DisallowMultipleComponent]
-    public abstract class BPG_BlockBase : BPG_ComponentBase, I_BPG_Block
-    {
+    public abstract class BPG_BlockBase : BPG_ComponentBase, I_BPG_Block {
+
         /// <summary>
         /// Classification of blocks.
         /// </summary>
-        public abstract BlockType Type { get;}
+        public abstract BlockType Type { get; }
 
         /// <summary>
         /// 
@@ -34,7 +34,7 @@ namespace nitou.BlockPG.Block{
         /// <summary>
         /// Functional implementation of blocks.
         /// </summary>
-        public I_BPG_Instruction Instruction { get; set; }
+        public I_BPG_Instruction Instruction { get; protected set; }
 
         /// <summary>
         /// Idintification id.
@@ -50,6 +50,9 @@ namespace nitou.BlockPG.Block{
         /// </summary>
         public virtual void SetShadowActive(bool isActive) { }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void SetParent(I_BPG_BlockSection parentSection) {
             ParentSection = parentSection;
         }
@@ -61,8 +64,7 @@ namespace nitou.BlockPG.Block{
         /// <summary>
 		/// Obtain a reference to a block-related components.
 		/// </summary>
-		protected void GatherComponents()
-        {
+		protected void GatherComponents() {
             Layout = gameObject.GetComponent<I_BPG_BlockLayout>();
             Drag = gameObject.GetComponent<I_BPG_Draggable>();
         }
