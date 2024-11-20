@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace nitou.BlockPG.Block {
+namespace nitou.BlockPG.Blocks {
     using nitou.BlockPG.Interface;
 
     /// <summary>
@@ -59,7 +59,7 @@ namespace nitou.BlockPG.Block {
 
 
         /// ----------------------------------------------------------------------------
-        // Private Method
+        // Protected Method
 
         /// <summary>
 		/// Obtain a reference to a block-related components.
@@ -76,6 +76,10 @@ namespace nitou.BlockPG.Block {
             ParentSection = gameObject.GetComponentInParent<I_BPG_BlockSection>();
         }
 
+        protected void AdjustTransform() {
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+            transform.localEulerAngles = Vector3.zero;
+        }
     }
 
 }

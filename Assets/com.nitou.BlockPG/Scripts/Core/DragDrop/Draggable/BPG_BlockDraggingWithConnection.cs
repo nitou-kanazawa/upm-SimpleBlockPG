@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace nitou.BlockPG.DragDrop{
     using nitou.BlockPG.Interface;
-    using nitou.BlockPG.Block;
+    using nitou.BlockPG.Blocks;
     using UnityEngine.EventSystems;
 
     public class BPG_BlockDraggingWithConnection : BPG_BlockDraggingBase {
@@ -50,7 +50,7 @@ namespace nitou.BlockPG.DragDrop{
         private void DetectConectableBlockSpot() {
             
             // 
-            var spot = _system.FindClosestSpotForBlock(this, _system.DetectionDistance);
+            var spot = _system.FindClosestBlockSpot(this, _system.DetectionDistance);
 
             //// 接続可否判定のデモコード
             //if (spot != null && spot.Block != null && this.Block.IsConditionBlock()) {

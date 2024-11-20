@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEditor;
 #endif
 
-namespace nitou.BlockPG.Block.Section {
+namespace nitou.BlockPG.Blocks.Section {
     using nitou.BlockPG.Interface;
     using System.Collections.Generic;
 

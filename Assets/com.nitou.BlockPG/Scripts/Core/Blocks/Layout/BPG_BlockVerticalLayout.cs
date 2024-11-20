@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using UniRx;
+//using UniRx;
 using UniRx.Triggers;
 
-namespace nitou.BlockPG.Block {
+namespace nitou.BlockPG.Blocks {
     using nitou.BlockPG.Interface;
 
     [ExecuteInEditMode]
@@ -46,7 +46,7 @@ namespace nitou.BlockPG.Block {
         }
 
         /// <summary>
-        /// 
+        /// Child sections.
         /// </summary>
         public IReadOnlyList<I_BPG_BlockSection> Sections => _sections;
 

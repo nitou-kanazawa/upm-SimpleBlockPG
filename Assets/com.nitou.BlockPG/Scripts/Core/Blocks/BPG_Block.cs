@@ -1,7 +1,7 @@
 using UniRx;
 using UnityEngine;
 
-namespace nitou.BlockPG.Block{
+namespace nitou.BlockPG.Blocks{
     using nitou.BlockPG.Events;
 
     public sealed class BPG_Block : BPG_BlockBase {

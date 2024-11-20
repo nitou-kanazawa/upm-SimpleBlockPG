@@ -20,14 +20,14 @@ namespace nitou.BlockPG.Interface{
         /// <summary>
         /// <see cref="I_BPG_ProgrammingEnv"/> whitch spot is belong.
         /// </summary>
-        public static I_BPG_ProgrammingEnv GetRelatedProgEnv_BE2(this I_BPG_Spot self) {
+        public static I_BPG_ProgrammingEnv GetBelongedProgEnv(this I_BPG_Spot self) {
             
-            // parent
+            // get from self or parent
             var programmingEnv = self.RectTransform.GetComponentInParent<I_BPG_ProgrammingEnv>();
             
-            // child
+            // Get from child
             if (programmingEnv == null && self.RectTransform.childCount > 0) {
-                programmingEnv = self.RectTransform.GetChild(0).GetComponentInParent<I_BPG_ProgrammingEnv>();
+                programmingEnv = self.RectTransform.GetChild(0).GetComponent<I_BPG_ProgrammingEnv>();
             }
 
             return programmingEnv;

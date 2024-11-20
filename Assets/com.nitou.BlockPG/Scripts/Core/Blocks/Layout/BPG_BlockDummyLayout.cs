@@ -1,16 +1,28 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace nitou.BlockPG.Block {
+namespace nitou.BlockPG.Blocks{
     using nitou.BlockPG.Interface;
+    using System.Collections.Generic;
 
     [DisallowMultipleComponent]
-    public sealed class BPG_BlockHorizontalLayout : BPG_ComponentBase {
-
-        [SerializeField] Color _blockColor = Color.white;
-        [SerializeField] bool _highlight = false;
+    public class BPG_BlockDummyLayout : BPG_ComponentBase, I_BPG_BlockLayout {
 
         private readonly List<I_BPG_BlockSection> _sections = new();
+
+        /// <summary>
+        /// Block visible color.
+        /// </summary>
+        public Color Color {get; set;}
+
+        /// <summary>
+        /// Returns the size of the whole block. Headers and Bodies with child blocks are counted on.
+        /// </summary>
+        public Vector2 Size => Vector2.zero;
+
+        /// <summary>
+        /// Child sections.
+        /// </summary>
+        public IReadOnlyList<I_BPG_BlockSection> Sections => _sections;
 
 
         /// ----------------------------------------------------------------------------
@@ -29,18 +41,8 @@ namespace nitou.BlockPG.Block {
         /// Updates the layout of the block. Used to correctly resize the blocks after adding child and operation blocks
         /// </summary>
         public void UpdateLayout() {
-            //RectTransform.sizeDelta = Size;
+            RectTransform.sizeDelta = Size;
             _sections.ForEach(section => section.UpdateLayout());
         }
-
-
-        /// ----------------------------------------------------------------------------
-#if UNITY_EDITOR
-
-
-        void OnValidate() {
-            GatherSections();
-        }
-#endif
     }
 }

@@ -6,6 +6,9 @@ namespace nitou.BlockPG.Interface{
 
         RectTransform RectTransform { get; }
         
+        /// <summary>
+        /// Item size.
+        /// </summary>
         Vector2 Size { get; }
     }
 }

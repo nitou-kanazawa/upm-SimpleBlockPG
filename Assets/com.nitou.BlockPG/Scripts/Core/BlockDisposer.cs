@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace nitou.BlockPG.Block {
+namespace nitou.BlockPG.Blocks {
     using nitou.BlockPG.Interface;
     using nitou.BlockPG.Events;
 

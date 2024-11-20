@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEditor;
-using nitou.BlockPG.Block;
+using nitou.BlockPG.Blocks;
 
 namespace nitou.BlockPGEditor.Drawer{
 

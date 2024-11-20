@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace nitou.BlockPG.Block.Section{
+namespace nitou.BlockPG.Blocks.Section{
     using nitou.BlockPG.Interface;
 
     [DisallowMultipleComponent]

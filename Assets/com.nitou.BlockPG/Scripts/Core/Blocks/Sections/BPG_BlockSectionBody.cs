@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
     using System.Collections.Generic;
 
-namespace nitou.BlockPG.Block.Section{
+namespace nitou.BlockPG.Blocks.Section{
     using nitou.BlockPG.Interface;
     using nitou.BlockPG.DragDrop;
     using System.Linq;
@@ -69,7 +69,8 @@ namespace nitou.BlockPG.Block.Section{
         public void UpdateChildBlocks() {
             _childBlocks.Clear();
             foreach (Transform chiled in transform) {
-                if (chiled.TryGetComponent<I_BPG_Block>(out var block)) {
+                if (chiled.gameObject.activeSelf 
+                    && chiled.TryGetComponent<I_BPG_Block>(out var block)) {
                     _childBlocks.Add(block);
                 }
             }
