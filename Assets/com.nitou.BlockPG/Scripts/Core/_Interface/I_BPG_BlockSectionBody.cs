@@ -16,4 +16,14 @@ namespace nitou.BlockPG.Interface{
         /// </summary>
         void UpdateChildBlocks();
     }
+
+
+    public static class BPG_BlockSectionBody_Extensions {
+
+        public static void Append(this I_BPG_BlockSectionBody self, I_BPG_Block block) {
+            block.RectTransform.SetParent(self.RectTransform);
+        }
+
+    }
+
 }

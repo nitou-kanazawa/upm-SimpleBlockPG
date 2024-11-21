@@ -2,12 +2,11 @@ using System;
 using System.Xml.Linq;
 using UnityEngine;
 
-namespace nitou.BlockPG.Serialization
-{
+namespace nitou.BlockPG.Serialization {
 
     [Serializable]
     public sealed class SerializableInput {
-        
+
         public readonly string value;
 
 
@@ -17,8 +16,7 @@ namespace nitou.BlockPG.Serialization
         /// <summary>
         /// Constructor.
         /// </summary>
-        public SerializableInput(string value)
-        {
+        public SerializableInput(string value) {
             this.value = value;
         }
 
@@ -34,8 +32,7 @@ namespace nitou.BlockPG.Serialization
         /// <summary>
         /// Converting from classes to XML elements for serialization.
         /// </summary>
-        public static XElement ToXElement(SerializableInput sInput)
-        {
+        public static XElement ToXElement(SerializableInput sInput) {
             var xInput = new XElement(NAME_KEY,
                 new XElement("value", sInput.value)
             );
@@ -45,8 +42,7 @@ namespace nitou.BlockPG.Serialization
         /// <summary>
         /// Converting from XML elements to classes for serialization.
         /// </summary>
-        public static SerializableInput FromXElement(XElement xInput)
-        {
+        public static SerializableInput FromXElement(XElement xInput) {
             if (xInput == null) {
                 Debug.LogWarning("XElement is null. Returning default SerializableInput.");
                 return new SerializableInput(string.Empty);

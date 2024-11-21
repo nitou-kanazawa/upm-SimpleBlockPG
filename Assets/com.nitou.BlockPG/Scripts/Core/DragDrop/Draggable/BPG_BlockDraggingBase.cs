@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace nitou.BlockPG.DragDrop {
     using nitou.BlockPG.Interface;
-    using nitou.BlockPG.Block;
+    using nitou.BlockPG.Blocks;
 
     [DisallowMultipleComponent]
     public class BPG_BlockDraggingBase : BPG_ComponentBase, I_BPG_Draggable,
@@ -112,12 +112,13 @@ namespace nitou.BlockPG.DragDrop {
         /// 
         /// </summary>
         protected bool DropToRaycastedFreeSpot(PointerEventData eventData) {
-            // DoropƒGƒŠƒA‚ðŽæ“¾‚·‚é
-            var spot = _system.GetSpotAtPosition(eventData);
-            if (spot is BPG_SpotProgrammingEnv progEnvSpot) {
 
+            // Get any spot
+            var spot = _system.DetectSpotAtPointerPosition(eventData);
+            
+            if (spot != null) {
                 // ProgramEnvŽæ“¾
-                var programmingEnv = progEnvSpot.GetProgrammingEnv();
+                var programmingEnv = spot.GetBelongedProgEnv();
                 if (programmingEnv != null) {
                     programmingEnv.Append(this);
                     return true;

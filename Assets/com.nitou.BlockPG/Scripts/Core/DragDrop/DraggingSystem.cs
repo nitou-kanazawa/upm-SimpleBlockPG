@@ -4,11 +4,11 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Pool;
-using nitou.Utils;
+using nitou.AssetLoader;
 
 namespace nitou.BlockPG.DragDrop {
     using nitou.BlockPG.Interface;
-    using nitou.BlockPG.Block;
+    using nitou.BlockPG.Blocks;
 
     // 
     public class DraggingSystem : SingletonMonoBehaviour<DraggingSystem>{
@@ -49,8 +49,8 @@ namespace nitou.BlockPG.DragDrop {
         /// <summary>
         /// Returns the first spot component (used to place draggable components at) at the position
         /// </summary>
-        public I_BPG_Spot GetSpotAtPosition(PointerEventData eventData, bool onlyTop = false) {
-            
+        public I_BPG_Spot DetectSpotAtPointerPosition(PointerEventData eventData, bool onlyTop = false) {
+
             I_BPG_Spot spot = null;
 
             var results = ListPool<RaycastResult>.Get();
@@ -67,13 +67,14 @@ namespace nitou.BlockPG.DragDrop {
             }
 
             ListPool<RaycastResult>.Release(results);
+            
             return spot;
         }
 
         /// <summary>
         /// 指定された距離内で、最も近いSpotを探します。
         /// </summary>
-        public I_BPG_Spot FindClosestSpotForBlock(I_BPG_Draggable draggable, float maxDistance) {
+        public I_BPG_Spot FindClosestBlockSpot(I_BPG_Draggable draggable, float maxDistance) {
             return FindClosestSpot(draggable, maxDistance, spot =>
                 // Block body 、
                 (spot is BPG_SpotBlockBody ||

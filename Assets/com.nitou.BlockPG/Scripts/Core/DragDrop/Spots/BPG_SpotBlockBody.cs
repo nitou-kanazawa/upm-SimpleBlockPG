@@ -7,11 +7,10 @@ namespace nitou.BlockPG.DragDrop {
 
         public override Vector2 DropPosition => RectTransform.position;
 
+
         private void Awake() {
             GatherComponents();
         }
-
-
 
 
         /// ----------------------------------------------------------------------------
