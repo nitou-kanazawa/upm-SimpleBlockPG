@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using nitou.Utils;
+using nitou.AssetLoader;
 
 namespace nitou.BlockPG.Interface {
 
@@ -58,7 +58,7 @@ namespace nitou.BlockPG.Interface {
     public static class BPG_Block_Extensions {
 
         /// ----------------------------------------------------------------------------
-        #region Type
+        #region Info
 
         public static bool IsTrigger(this I_BPG_Block self) {
             return self.Type is BlockType.Trigger;
@@ -66,6 +66,10 @@ namespace nitou.BlockPG.Interface {
 
         public static bool IsCondition(this I_BPG_Block self) {
             return self.Type is BlockType.Condition;
+        }
+
+        public static int GetGameObjectID(this I_BPG_Block self) {
+            return self.RectTransform.gameObject.GetInstanceID();
         }
 
         #endregion

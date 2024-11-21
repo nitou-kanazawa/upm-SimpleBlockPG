@@ -13,6 +13,10 @@ namespace nitou.BlockPG.Interface {
     /// </summary>
     public static class BPG_ProgrammingEnv_Extensions {
 
+        public static void Append(this I_BPG_ProgrammingEnv self, I_BPG_Block block) {
+            block.RectTransform.SetParent(self.RectTransform);
+        }
+
         /// <summary>
         /// 
         /// </summary>

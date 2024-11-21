@@ -4,7 +4,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Pool;
-using nitou.Utils;
+using nitou.AssetLoader;
 
 namespace nitou.BlockPG.DragDrop {
     using nitou.BlockPG.Interface;
@@ -68,7 +68,6 @@ namespace nitou.BlockPG.DragDrop {
 
             ListPool<RaycastResult>.Release(results);
             
-            Debug.Log($"Get free spot : {spot}");
             return spot;
         }
 

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace nitou.Utils {
+namespace nitou.AssetLoader {
 
     /// <summary>
     /// Extension methods for type of <see cref="IList{T}"/>.

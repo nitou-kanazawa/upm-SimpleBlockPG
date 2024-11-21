@@ -7,7 +7,7 @@ namespace nitou.BlockPG.Blocks {
     /// <summary>
     /// A block instance that serves as the entry point for the program.
     /// </summary>
-    public sealed class BPG_EntryBlock : BPG_BlockBase {
+    public sealed class BPG_TriggerBlock : BPG_BlockBase {
 
         /// <summary>
         /// Classification of blocks.
