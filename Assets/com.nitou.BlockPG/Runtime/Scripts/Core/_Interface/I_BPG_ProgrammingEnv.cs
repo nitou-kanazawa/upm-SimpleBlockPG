@@ -15,6 +15,7 @@ namespace nitou.BlockPG.Interface {
 
         public static void Append(this I_BPG_ProgrammingEnv self, I_BPG_Block block) {
             block.RectTransform.SetParent(self.RectTransform);
+            block.SetParentSection(null);
         }
 
         /// <summary>
@@ -23,6 +24,7 @@ namespace nitou.BlockPG.Interface {
         public static void Append(this I_BPG_ProgrammingEnv self, I_BPG_Draggable draggabble) {
 
             draggabble.RectTransform.SetParent(self.RectTransform);
+            draggabble.Block.SetParentSection(null);
         }
 
     }

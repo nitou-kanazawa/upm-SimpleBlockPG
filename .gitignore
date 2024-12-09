@@ -75,3 +75,5 @@ crashlytics-build.properties
 # 有料アセットを除外
 /[Aa]ssets/Plugins/Sirenix/
 /[Aa]ssets/Plugins/Sirenix.meta
+/[Aa]ssets/Plugins/StompyRobot/
+/[Aa]ssets/Plugins/StompyRobot.meta

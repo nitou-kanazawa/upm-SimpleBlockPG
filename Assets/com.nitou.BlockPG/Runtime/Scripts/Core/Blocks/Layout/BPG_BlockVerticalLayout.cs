@@ -72,6 +72,15 @@ namespace nitou.BlockPG.Blocks {
             //    .AddTo(this);
         }
 
+        private void LateUpdate() {
+                UpdateLayout();
+#if UNITY_EDITOR
+            if (!EditorApplication.isPlaying) {
+                LayoutRebuilder.ForceRebuildLayoutImmediate(RectTransform);
+            }
+#endif
+        }
+
 
         /// ----------------------------------------------------------------------------
         // Public Method
@@ -95,19 +104,12 @@ namespace nitou.BlockPG.Blocks {
 
 
         /// ----------------------------------------------------------------------------
-//#if UNITY_EDITOR
-//        void LateUpdate() {
-//            // ※編集時は常に更新する．
-//            if (!EditorApplication.isPlaying) {
-//                UpdateLayout();
-//                LayoutRebuilder.ForceRebuildLayoutImmediate(RectTransform);
-//            }
-//        }
+#if UNITY_EDITOR
 
-//        void OnValidate() {
-//            GatherSections();
-//        }
-//#endif
+        void OnValidate() {
+            GatherSections();
+        }
+#endif
     }
 
 }

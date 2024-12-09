@@ -1,14 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
-    using System.Collections.Generic;
+using System.Collections.Generic;
 
-namespace nitou.BlockPG.Blocks.Section{
+namespace nitou.BlockPG.Blocks.Section {
     using nitou.BlockPG.Interface;
     using nitou.BlockPG.DragDrop;
     using System.Linq;
 
+    [RequireComponent(typeof(BPG_SpotBlockBody))]
     [DisallowMultipleComponent]
-    public class BPG_BlockSectionBody : BPG_ComponentBase , I_BPG_BlockSectionBody{
+    public class BPG_BlockSectionBody : BPG_ComponentBase, 
+        I_BPG_BlockSectionBody {
+
+        // [NOTE]
+        // - ブロックの表示順をLayoutGroupによって管理しているため、リストは毎フレーム更新する実装となっている．
+        // - 同様にサイズ更新もLayoutGroupに依存するため、場合によっては１F遅延するかも．
 
         private Image _image;
         private BPG_SpotBlockBody _spot;
@@ -26,41 +32,60 @@ namespace nitou.BlockPG.Blocks.Section{
         /// ----------------------------------------------------------------------------
         // Property
 
+        /// <summary>
+        /// サイズ情報．
+        /// </summary>
         public Vector2 Size {
             get => RectTransform.sizeDelta;
             set => RectTransform.sizeDelta = value;
         }
 
-        public IReadOnlyList<I_BPG_Block> ChildBlocks => _childBlocks;
-
         public I_BPG_BlockSection BlockSection => _section;
 
+        /// <summary>
+        /// 接続されている子ブロックのリスト．
+        /// </summary>
+        public IReadOnlyList<I_BPG_Block> ChildBlocks => _childBlocks;
+
+        /// <summary>
+        /// ブロック接続の可否判定用コンポーネント．
+        /// </summary>
         public I_BPG_Spot Spot => _spot;
 
-
-        /// ----------------------------------------------------------------------------
-        // Lifecycle Events
-
-        void Awake() {
-            GatherComponents();
-
-            if (_image != null) {
-                _image.type = Image.Type.Sliced;
-                _image.pixelsPerUnitMultiplier = 2;
-            }
-        }
+        /// <summary>
+        /// 初期化処理が完了しているかどうか．
+        /// </summary>
+        public bool IsInitialized { get; private set; } = false;
 
 
         /// ----------------------------------------------------------------------------
         // Public Method
 
         /// <summary>
+        /// 開始処理．
+        /// </summary>
+        internal void Initialize() {
+            if (IsInitialized)
+                throw new System.InvalidOperationException("Block Header is already initialized yet.");
+
+            GatherComponents();
+
+            if (_image != null) {
+                _image.type = Image.Type.Sliced;
+                _image.pixelsPerUnitMultiplier = 2;
+            }
+
+            IsInitialized = true;
+        }
+
+        /// <summary>
         /// Updates the layout of an indivisual block section. Used to correctly resize the section after adding child and operation blocks
         /// </summary>
+        [ContextMenu("Update Layout")]
         public void UpdateLayout() {
-            ApplyColor();
-            UpdateChildBlocks();
+            UpdateChildBlocks();    // ※毎フレーム、ブロックリストは更新する
             UpdateSelfSize();
+            ApplyColor();
         }
 
         /// <summary>
@@ -68,8 +93,10 @@ namespace nitou.BlockPG.Blocks.Section{
         /// </summary>
         public void UpdateChildBlocks() {
             _childBlocks.Clear();
+
+            // 直下のアクティブなブロックを取得する
             foreach (Transform chiled in transform) {
-                if (chiled.gameObject.activeSelf 
+                if (chiled.gameObject.activeSelf
                     && chiled.TryGetComponent<I_BPG_Block>(out var block)) {
                     _childBlocks.Add(block);
                 }
@@ -81,7 +108,6 @@ namespace nitou.BlockPG.Blocks.Section{
         // Private Method
 
         private void GatherComponents() {
-
             _image = GetComponent<Image>();
             _spot = GetComponent<BPG_SpotBlockBody>();
 
@@ -102,7 +128,7 @@ namespace nitou.BlockPG.Blocks.Section{
 
             float minHeight = _section.Block.IsTrigger() ? 0f : 50f;
             float height = _childBlocks.Sum(child => child.Layout.Size.y - 10) - 10;
-            
+
             height = Mathf.Max(minHeight, height);
 
 

@@ -32,12 +32,22 @@ namespace nitou.BlockPG.DragDrop {
 
     public static partial class BPG_Spot_Extensions {
 
-        public static void InsertNextTo(this I_BPG_Block block, BPG_SpotOuterArea spotOuterArea) {
+        public static bool InsertNextTo(this I_BPG_Block block, BPG_SpotOuterArea spotOuterArea) {
             // place to the same parent as spot block
-            var spotBlockParent = spotOuterArea.Block.RectTransform.parent;
-            int spotBlockIndex = spotOuterArea.Block.RectTransform.GetSiblingIndex();
-            block.RectTransform.SetParent(spotBlockParent);
-            block.RectTransform.SetSiblingIndex(spotBlockIndex + 1);
+            var parentSection = spotOuterArea.Block.ParentSection;
+            var index = spotOuterArea.Block.GetIndexInSection();
+            if (index < 0) return false;
+
+            parentSection.Body.Append(block, index + 1);
+
+            //var spotBlockParent = spotOuterArea.Block.RectTransform.parent;
+            //int spotBlockIndex = spotOuterArea.Block.RectTransform.GetSiblingIndex();
+
+            //spotBlockParent.
+            //block.RectTransform.SetParent(spotBlockParent);
+            //block.RectTransform.SetSiblingIndex(spotBlockIndex + 1);
+
+            return true;
         }
     }
 }

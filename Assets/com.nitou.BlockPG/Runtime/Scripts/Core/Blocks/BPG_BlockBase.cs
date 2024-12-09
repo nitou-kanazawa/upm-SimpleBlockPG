@@ -45,11 +45,11 @@ namespace nitou.BlockPG.Blocks {
         /// ----------------------------------------------------------------------------
         // Lifecycle Events
 
-        private void LateUpdate() {
-            if(this.IsRootBlock()) {
-                Layout.UpdateLayout();
-            }
-        }
+        //private void LateUpdate() {
+        //    if(this.IsRootBlock()) {
+        //        Layout.UpdateLayout();
+        //    }
+        //}
 
 
         /// ----------------------------------------------------------------------------
@@ -63,7 +63,7 @@ namespace nitou.BlockPG.Blocks {
         /// <summary>
         /// 
         /// </summary>
-        public void SetParent(I_BPG_BlockSection parentSection) {
+        public void SetParentSection(I_BPG_BlockSection parentSection) {
             ParentSection = parentSection;
         }
 

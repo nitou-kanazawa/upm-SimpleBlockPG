@@ -19,6 +19,18 @@ namespace nitou.BlockPG.Interface{
     /// </summary>
     public static class BPG_BlockSection_Extensions {
 
+        // ----------------------------------------------------------------------------
+        #region Info
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static int GetSectionIndex(this I_BPG_BlockSection self) {
+            return self.RectTransform.GetSiblingIndex();
+        }
+
+        #endregion
+
 
         /// ----------------------------------------------------------------------------
         #region Getter
@@ -53,6 +65,7 @@ namespace nitou.BlockPG.Interface{
                 .Select(block => block.GetAllChaildBlocksCount())
                 .Sum();
         }
+
 
         /// <summary>
         /// Obtains a reference to the parent section to which it belongs.

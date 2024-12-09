@@ -2,9 +2,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace nitou.BlockPG.Blocks.Section {
     using nitou.BlockPG.Interface;
@@ -13,7 +10,8 @@ namespace nitou.BlockPG.Blocks.Section {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Image))]
     //[RequireComponent(typeof(Shadow))]
-    public sealed class BPG_BlockSectionHeader : BPG_ComponentBase, I_BPG_BlockSectionHeader {
+    public sealed class BPG_BlockSectionHeader : BPG_ComponentBase, 
+        I_BPG_BlockSectionHeader {
 
         // refecences (self)
         private Image _image;
@@ -31,8 +29,11 @@ namespace nitou.BlockPG.Blocks.Section {
         [SerializeField] float _spacing = 15f;
 
 
+        /// ----------------------------------------------------------------------------
+        // Property
+
         /// <summary>
-        /// 
+        /// サイズ情報．
         /// </summary>
         public Vector2 Size {
             get => RectTransform.sizeDelta;
@@ -44,24 +45,34 @@ namespace nitou.BlockPG.Blocks.Section {
         /// </summary>
         public IList<I_BPG_BlockSectionHeaderItem> Items => _items;
 
+        /// <summary>
+        /// 初期化処理が完了しているかどうか．
+        /// </summary>
+        public bool IsInitialized { get; private set; } = false;
+
 
         /// ----------------------------------------------------------------------------
+        // Public Method
 
-        private void Awake() {
+        /// <summary>
+        /// 開始処理．
+        /// </summary>
+        internal void Initialize() {
+            if (IsInitialized)
+                throw new System.InvalidOperationException("Block Header is already initialized yet.");
+
             GatherComponents();
 
             if (_image != null) {
                 _image.type = Image.Type.Sliced;
                 _image.pixelsPerUnitMultiplier = 2;
             }
-            
+
             UpdateItems();
             UpdateInputs();
+
+            IsInitialized = true;
         }
-
-
-        /// ----------------------------------------------------------------------------
-        // Public Method
 
         /// <summary>
         /// Updates the layout of an individual block header. Used to correctly resize the body after adding operation blocks
@@ -69,13 +80,12 @@ namespace nitou.BlockPG.Blocks.Section {
         [ContextMenu("Update Layout")]
         public void UpdateLayout() {
 #if UNITY_EDITOR
-            if (!EditorApplication.isPlaying) {
+            if (!UnityEditor.EditorApplication.isPlaying) {
                 UpdateItems();
             }
 #endif
-
-            ApplyColor();
             UpdateSelfSize();
+            ApplyColor();
         }
 
         /// <summary>
@@ -84,6 +94,7 @@ namespace nitou.BlockPG.Blocks.Section {
         public void UpdateItems() {
             _items.Clear();
 
+            // 直下のアクティブなアイテムを取得する
             foreach (Transform chiled in transform) {
                 if(chiled.TryGetComponent<I_BPG_BlockSectionHeaderItem>(out var item)
                     && item.RectTransform.gameObject.activeSelf) {

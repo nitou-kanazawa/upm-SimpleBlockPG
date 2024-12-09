@@ -7,6 +7,8 @@ namespace nitou.BlockPG.DragDrop {
 
         public override Vector2 DropPosition => RectTransform.position;
 
+        public I_BPG_BlockSectionBody SectionBody { get; private set; }
+
 
         private void Awake() {
             GatherComponents();
@@ -18,6 +20,7 @@ namespace nitou.BlockPG.DragDrop {
 
         private void GatherComponents() {
             Block = GetComponentInParent<I_BPG_Block>();
+            SectionBody = GetComponent<I_BPG_BlockSectionBody>();
         }
 
 
@@ -33,8 +36,7 @@ namespace nitou.BlockPG.DragDrop {
     public static partial class BPG_Spot_Extensions {
 
         public static void ConnectTo(this I_BPG_Block block, BPG_SpotBlockBody spotBlockBody) {
-            block.RectTransform.SetParent(spotBlockBody.RectTransform);
-            block.RectTransform.SetSiblingIndex(0);
+            spotBlockBody.SectionBody.AppendFirst(block);
         }
     }
 }

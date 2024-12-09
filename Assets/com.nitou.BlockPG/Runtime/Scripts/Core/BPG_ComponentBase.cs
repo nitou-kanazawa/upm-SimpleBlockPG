@@ -10,6 +10,5 @@ namespace nitou.BlockPG{
         /// RectTransform.
         /// </summary>
         public RectTransform RectTransform => (_rectTransform != null) ? _rectTransform : (_rectTransform = GetComponent<RectTransform>());
-
     }
 }

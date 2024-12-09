@@ -1,11 +1,11 @@
 using UnityEngine;
 
 
-namespace nitou.BlockPG.Blocks.Section{
+namespace nitou.BlockPG.Blocks.Section {
     using nitou.BlockPG.Interface;
 
     [DisallowMultipleComponent]
-    public class BPG_BlockSection : BPG_ComponentBase , I_BPG_BlockSection{
+    public class BPG_BlockSection : BPG_ComponentBase, I_BPG_BlockSection {
 
         [SerializeField] BPG_BlockSectionHeader _header;
         [SerializeField] BPG_BlockSectionBody _body;
@@ -14,7 +14,7 @@ namespace nitou.BlockPG.Blocks.Section{
         /// 
         /// </summary>
         public I_BPG_Block Block { get; private set; }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -28,10 +28,10 @@ namespace nitou.BlockPG.Blocks.Section{
 
         public Vector2 Size {
             get {
-                if(_header != null) {
+                if (_header != null) {
                     var size = _header.Size;
                     if (_body != null) {
-                        size.y  += _body.Size.y;
+                        size.y += _body.Size.y;
                     }
                     return size;
                 } else {
@@ -43,12 +43,25 @@ namespace nitou.BlockPG.Blocks.Section{
 
         /// ----------------------------------------------------------------------------
         // Public Method
+        
+        private void Awake() {
+            GatherComponents();
+
+            if (_header != null)
+                _header.Initialize();
+            if (_body != null)
+                _body.Initialize();
+        }
+
+
+        /// ----------------------------------------------------------------------------
+        // Public Method
 
         public void UpdateLayout() {
-            if(_header != null) {
+            if (_header != null) {
                 _header.UpdateLayout();
             }
-            if(_body != null) {
+            if (_body != null) {
                 _body.UpdateLayout();
             }
 
