@@ -25,7 +25,7 @@ namespace nitou.BlockPG.Serialization {
         #region Static Method (Data conversion)
 
         /// <summary>
-        /// Identification key.
+        /// Ž¯•Ê–¼.
         /// </summary>
         public static readonly string NAME_KEY = "Input";
 

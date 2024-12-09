@@ -72,6 +72,13 @@ namespace nitou.BlockPG.Interface {
             return self.RectTransform.gameObject.GetInstanceID();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public static bool IsRootBlock(this I_BPG_Block self) {
+            return self.ParentSection == null;
+        }
+
         #endregion
 
 
@@ -94,7 +101,7 @@ namespace nitou.BlockPG.Interface {
         }
 
         /// <summary>
-        /// 子階層以下の<see cref="I_BE2_Block"/>を再帰的に取得する
+        /// 子階層以下の<see cref="I_BE2_Block"/>を再帰的に取得する．
         /// </summary>
         public static List<I_BPG_Block> GetAllChaildBlocks(this I_BPG_Block self, bool containSelf = true) {
             if (self == null) return null;
@@ -113,7 +120,7 @@ namespace nitou.BlockPG.Interface {
         }
 
         /// <summary>
-        /// 子階層以下の<see cref="I_BPG_Block"/>の数を取得する
+        /// 子階層以下の<see cref="I_BPG_Block"/>の数を取得する．
         /// </summary>
         public static int GetAllChaildBlocksCount(this I_BPG_Block self, bool containSelf = true) {
             if (self == null)
@@ -195,5 +202,4 @@ namespace nitou.BlockPG.Interface {
 
         #endregion
     }
-
 }

@@ -1,18 +1,16 @@
 using UnityEngine;
 
-namespace nitou.BlockPG.Serialization
-{
+namespace nitou.BlockPG.Serialization {
 
     /// <summary>
     /// XML変換に関連した汎用メソッド集．
     /// </summary>
-    public class XmlUtils
-    {
+    public class XmlUtils {
         // [TODO]
         //  基本型と文字列の変換はちゃんと調べて整備したい（※現状優先度は低い）
 
-        public static Vector3 StringToVector3(string stringValue)
-        {
+        public static Vector3 StringToVector3(string stringValue) {
+
             // 例外処理を追加し、入力がnullまたは空の場合には Vector3.zero を返す
             if (string.IsNullOrWhiteSpace(stringValue)) {
                 Debug.LogWarning("Input string is null or empty. Returning Vector3.zero.");

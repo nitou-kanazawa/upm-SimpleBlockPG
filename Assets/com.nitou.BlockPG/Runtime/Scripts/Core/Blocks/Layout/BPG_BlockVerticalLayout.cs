@@ -18,7 +18,6 @@ namespace nitou.BlockPG.Blocks {
 
         private readonly List<I_BPG_BlockSection> _sections = new();
 
-
         /// <summary>
         /// Block visible color.
         /// </summary>
@@ -96,23 +95,19 @@ namespace nitou.BlockPG.Blocks {
 
 
         /// ----------------------------------------------------------------------------
-#if UNITY_EDITOR
-        // v2.1 - moved blocks LayoutUpdate from Update to LateUpdate to avoid glitch on resizing 
-        void LateUpdate() {
-            if (!EditorApplication.isPlaying) {
-                UpdateLayout();
-                LayoutRebuilder.ForceRebuildLayoutImmediate(RectTransform);
-            } else {
+//#if UNITY_EDITOR
+//        void LateUpdate() {
+//            // ※編集時は常に更新する．
+//            if (!EditorApplication.isPlaying) {
+//                UpdateLayout();
+//                LayoutRebuilder.ForceRebuildLayoutImmediate(RectTransform);
+//            }
+//        }
 
-                UpdateLayout();
-
-            }
-        }
-
-        void OnValidate() {
-            GatherSections();
-        }
-#endif
+//        void OnValidate() {
+//            GatherSections();
+//        }
+//#endif
     }
 
 }

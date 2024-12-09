@@ -37,9 +37,19 @@ namespace nitou.BlockPG.Blocks {
         public I_BPG_Instruction Instruction { get; protected set; }
 
         /// <summary>
-        /// Idintification id.
+        /// 識別ID．
         /// </summary>
         public int Id => gameObject.GetInstanceID();
+
+
+        /// ----------------------------------------------------------------------------
+        // Lifecycle Events
+
+        private void LateUpdate() {
+            if(this.IsRootBlock()) {
+                Layout.UpdateLayout();
+            }
+        }
 
 
         /// ----------------------------------------------------------------------------
@@ -80,6 +90,14 @@ namespace nitou.BlockPG.Blocks {
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
             transform.localEulerAngles = Vector3.zero;
         }
-    }
 
+
+        /// ----------------------------------------------------------------------------
+#if UNITY_EDITOR
+        protected virtual void OnValidate() {
+            
+
+        }
+#endif
+    }
 }
