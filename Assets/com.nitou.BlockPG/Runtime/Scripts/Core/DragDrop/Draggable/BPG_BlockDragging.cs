@@ -10,13 +10,22 @@ namespace nitou.BlockPG.DragDrop{
         /// ----------------------------------------------------------------------------
         // Interface Method
 
+        /// <summary>
+        /// ドラッグ開始処理．
+        /// </summary>
         public override void OnBegineDrag(PointerEventData eventData) {
-            // append to dagging layer
+            // Append to dagging layer
              _system.AssignToDraggingPanel(this);
         }
 
+        /// <summary>
+        /// ドラッグ処理．
+        /// </summary>
         public override void OnDrag(PointerEventData eventData) { }
 
+        /// <summary>
+        /// ドラッグ終了処理．
+        /// </summary>
         public override void OnEndDrag(PointerEventData eventData) {
 
             if (DropToRaycastedFreeSpot(eventData)) { 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using nitou.AssetLoader;
+using nitou.Utils;
 
 namespace nitou.BlockPG.Interface {
 
@@ -26,7 +26,7 @@ namespace nitou.BlockPG.Interface {
         BlockType Type { get; }
 
         /// <summary>
-        /// Parent section. if block is root object, section is null. 
+        /// 親セクション．ルートブロックの場合はnullになる．
         /// </summary>
         I_BPG_BlockSection ParentSection { get; }
 
@@ -49,7 +49,6 @@ namespace nitou.BlockPG.Interface {
         /// 親セクションを設定する．
         /// </summary>
         void SetParentSection(I_BPG_BlockSection parentSection);
-
     }
 
 

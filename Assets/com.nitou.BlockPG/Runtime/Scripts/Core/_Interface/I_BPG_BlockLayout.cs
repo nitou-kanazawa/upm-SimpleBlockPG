@@ -9,12 +9,12 @@ namespace nitou.BlockPG.Interface{
     public interface I_BPG_BlockLayout : ILayoutable{
 
         /// <summary>
-        /// Child sections.
+        /// 子セクション．
         /// </summary>
         IReadOnlyList<I_BPG_BlockSection> Sections { get; }
 
         /// <summary>
-        /// Block visible color.
+        /// ブロックカラー．.
         /// </summary>
         Color Color { get; set; }
     }

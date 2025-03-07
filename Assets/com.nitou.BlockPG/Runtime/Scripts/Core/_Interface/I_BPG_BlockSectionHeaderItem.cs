@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 
-namespace nitou.BlockPG.Interface{
+namespace nitou.BlockPG.Interface {
 
-    public interface I_BPG_BlockSectionHeaderItem{
+    public interface I_BPG_BlockSectionHeaderItem {
 
-        RectTransform RectTransform { get; }
-        
         /// <summary>
-        /// Item size.
+        /// 
+        /// </summary>
+        RectTransform RectTransform { get; }
+
+        /// <summary>
+        /// サイズ情報．
         /// </summary>
         Vector2 Size { get; }
     }

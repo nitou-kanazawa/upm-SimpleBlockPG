@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace nitou.AssetLoader {
+namespace nitou.Utils {
 
     /// <summary>
     /// Extension methods for type of <see cref="IList{T}"/>.
@@ -20,7 +20,6 @@ namespace nitou.AssetLoader {
         public static bool IsOutOfRange<T>(this int index, IReadOnlyList<T> list) {
             return !index.IsInRange(list);
         }
-
 
         /// <summary>
         /// 指定された要素のインデックスを取得する．

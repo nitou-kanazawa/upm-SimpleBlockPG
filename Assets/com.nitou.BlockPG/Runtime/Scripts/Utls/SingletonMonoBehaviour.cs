@@ -26,7 +26,7 @@ namespace nitou.AssetLoader {
 
                     // シーン内に存在しない場合はエラー
                     if (_instance == null) {
-                        Debug.LogError(typeof(T) + " をアタッチしているGameObjectはありません");
+                        Debug.LogWarning(typeof(T) + " をアタッチしているGameObjectはありません");
                     }
                 }
                 return _instance;

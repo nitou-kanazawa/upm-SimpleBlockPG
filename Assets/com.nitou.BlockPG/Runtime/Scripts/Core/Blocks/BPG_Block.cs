@@ -17,7 +17,7 @@ namespace nitou.BlockPG.Blocks{
         /// ----------------------------------------------------------------------------
         // Lifecycle Events
 
-        private void Awake() {
+        protected override void OnInitialize() {
             GatherComponents();
 
             // [NOTE] block which parent section is null was can not connectable.

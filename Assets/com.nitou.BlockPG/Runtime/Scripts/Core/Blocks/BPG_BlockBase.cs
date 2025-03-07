@@ -12,27 +12,27 @@ namespace nitou.BlockPG.Blocks {
     public abstract class BPG_BlockBase : BPG_ComponentBase, I_BPG_Block {
 
         /// <summary>
-        /// Classification of blocks.
+        /// ブロック分類．
         /// </summary>
         public abstract BlockType Type { get; }
 
         /// <summary>
-        /// 
+        /// ブロックが所属する親セクション．ルートブロックの場合はnullになる．
         /// </summary>
         public I_BPG_BlockSection ParentSection { get; protected set; }
 
         /// <summary>
-        /// 
+        /// 子階層のレイアウト．
         /// </summary>
         public I_BPG_BlockLayout Layout { get; protected set; }
 
         /// <summary>
-        /// Behavior during drag operations.
+        /// ドラッグ操作時の挙動．
         /// </summary>
         public I_BPG_Draggable Drag { get; protected set; }
 
         /// <summary>
-        /// Functional implementation of blocks.
+        /// ブロックの機能実装．
         /// </summary>
         public I_BPG_Instruction Instruction { get; protected set; }
 
@@ -50,6 +50,15 @@ namespace nitou.BlockPG.Blocks {
         //        Layout.UpdateLayout();
         //    }
         //}
+
+        //private void Start() => Debug.Log("[Block] Start");
+
+        protected virtual void Awake() {
+            //Debug.Log("[Block] Awake");
+            OnInitialize();
+        }
+        
+        protected virtual void OnInitialize() { }
 
 
         /// ----------------------------------------------------------------------------
