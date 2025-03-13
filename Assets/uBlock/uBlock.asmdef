@@ -1,10 +1,9 @@
 {
-    "name": "BlockPGTest",
-    "rootNamespace": "Demo",
+    "name": "Nitou.uBlock",
+    "rootNamespace": "Nitou.uBlock",
     "references": [
-        "GUID:f51ebe6a0ceec4240a699833d6309b23",
         "GUID:560b04d1a97f54a4e82edc0cbbb69285",
-        "GUID:7592324d3a02f2042a1102f46fdc0ece"
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
