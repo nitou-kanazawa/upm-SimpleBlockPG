@@ -1,0 +1,12 @@
+@startuml
+
+interface IBlock{
+    + Parent: IBlock
+    ' ルート起点のインデックス
+    + int GetSelfIndex()
+    ' 自分を起点としたインデックス
+    + int GetChildRelativeIndex(child IBlock)
+}
+
+
+@enduml
